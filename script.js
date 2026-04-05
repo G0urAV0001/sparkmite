@@ -94,3 +94,19 @@ document.querySelectorAll('.card, .facility-card, .timeline-item').forEach(el =>
     el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
     observer.observe(el);
 });
+
+// Facility manual links accordion toggle
+document.querySelectorAll('.facility-card.has-links').forEach(card => {
+    card.addEventListener('click', function(e) {
+        // Prevent toggling if the user clicked on an actual link
+        if(e.target.tagName.toLowerCase() === 'a' || e.target.closest('a')) {
+            return;
+        }
+        
+        this.classList.toggle('expanded');
+        const manualLinks = this.querySelector('.manual-links');
+        if (manualLinks) {
+            manualLinks.classList.toggle('active');
+        }
+    });
+});
